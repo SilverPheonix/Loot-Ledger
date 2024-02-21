@@ -1,2 +1,3 @@
-# ITP-DnD-Itembar
-Semesterprojekt 2024 für ITP
+# Loot Ledger
+# The RPG Backoack Item Manager
+# Semesterprojekt 2024 ITP, FH Technikum Wien
