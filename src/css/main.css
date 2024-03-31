@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=UnifrakturCook:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap");
+:root {
+	--dark-main-color: #3c3c44;
+	--light-main-color: #b3b3cc;
+	--blue-color: #226699;
+}
+html {
+	font-size: 16px;
+	box-sizing: border-box;
+	user-select: none;
+	height: 100vh;
+	width: 100vw;
+}
+body {
+	font-family: "Saira Condensed", sans-serif;
+	color: var(--light-main-color);
+	background-color: var(--dark-main-color);
+}
+/* Nav bar*/
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 1rem 1rem;
+}
+/*main*/
+.game-display {
+	box-sizing: border-box;
+	background-color: var(--light-main-color);
+	color: var(--dark-main-color);
+	height: 85vh;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 3fr 2fr;
+	grid-template-rows: 0.25fr repeat(4, 1fr) 0.25fr;
+	grid-gap: 1px;
+}
+
+.character-inventory h1 {
+	text-align: center;
+	font-size: 3.5rem;
+	margin: 0;
+	font-family: "Caesar Dressing", sans-serif;
+	padding: 1rem;
+}
+
+/* Inventory */
+
+.character-inventory-slots {
+	width: 50%;
+	height: 80%;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	grid-template-rows: repeat(10, 1fr);
+	grid-gap: 5px;
+	position: relative; /* Add relative positioning */
+}
+
+.inventory-slot {
+	flex: 0 0 calc(10% - 3px); /* Each grid item takes up 10% of the container width with a 5px gap */
+	margin-bottom: 5px; /* Adjust the margin to accommodate the grid gap */
+	background-color: #4c4c4c;
+	color: #ffffff;
+	border: black solid 2px;
+	font-size: 2.5rem;
+	border-radius: 10px;
+	padding: 10px;
+	text-align: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	position: relative; /* Add relative positioning */
+	z-index: 1; /* Ensure items can overlap */
+}
+
+.inventory-slot:hover {
+	/* golden border glow effect */
+	box-shadow: 0 0 10px 1px #ffcc00;
+	background-color: #6c6c6c;
+	cursor: pointer;
+}
+
+.inventory-slot.dragging {
+	opacity: 0.5; /* Reduce opacity for dragged items */
+	z-index: 2; /* Ensure dragged item is above others */
+}
+
+/* Style for items that span multiple slots */
+.inventory-slot[data-slot^="0-"] {
+	grid-column: span 2; /* Span two columns */
+	grid-row: span 2; /* Span two rows */
+}
+
+.inventory-slot[data-slot^="1-"] {
+	grid-column: span 2;
+	grid-row: span 2; /* Span two rows */
+}
+/* Style for items that span multiple slots */
+.inventory-slot[data-slot^="2-"] {
+	grid-column: span 3; /* Span three columns */
+}
+
+.inventory-slot[data-slot^="3-"] {
+	grid-column: span 4; /* Span four columns */
+}
+
+.inventory-slot[data-slot^="4-"] {
+	grid-column: span 5; /* Span five columns */
+}
+
+.inventory-slot[data-slot^="5-"] {
+	grid-column: span 6; /* Span six columns */
+}
+
+.inventory-slot[data-slot^="10-"] {
+	grid-row: span 2; /* Span two rows */
+}
+
+.inventory-slot[data-slot^="20-"] {
+	grid-row: span 3; /* Span three rows */
+}
+
+.inventory-slot[data-slot^="30-"] {
+	grid-row: span 4; /* Span four rows */
+}
+
+.inventory-slot[data-slot^="40-"] {
+	grid-row: span 5; /* Span five rows */
+}
+
+/* Add rules for items that span both rows and columns */
+.inventory-slot[data-slot^="11-"] {
+	grid-row: span 2; /* Span two rows */
+	grid-column: span 2; /* Span two columns */
+}
+
+.inventory-slot[data-slot^="21-"] {
+	grid-row: span 3; /* Span three rows */
+	grid-column: span 2; /* Span two columns */
+}
+
+/* Add similar rules for other combinations of spanned slots */
+
+/* whatever tf this all is */
+
+@media (max-width: 1050px) {
+	html {
+		font-size: 10px;
+	}
+}
+@media (max-width: 650px) {
+	html {
+		font-size: 8px;
+	}
+	body:before {
+		content: "Try flip phone to the side or use bigger screen size! Best on desktop device.";
+		color: var(--light-main-color);
+		text-align: center;
+		font-size: 2.7rem;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	body:after {
+		content: "- ⚔️ -";
+		font-size: 7rem;
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	main,
+	nav {
+		opacity: 0;
+	}
+}
