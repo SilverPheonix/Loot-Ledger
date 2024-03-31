@@ -4,14 +4,14 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="../src/css/reset.css" />
+		<link rel="stylesheet" href="../src/css/main.css" />
 		<link
 			rel="icon"
 			href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>"
 		/>
 		<title>RPG Inventory | Simple Character Inventory Design</title>
-		<script defer src="js/main.js"></script>
+		<script defer src="../src/js/main.js"></script>
 	</head>
 	<body>
 		<main>
