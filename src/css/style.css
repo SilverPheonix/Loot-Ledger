@@ -1,0 +1,18 @@
+#itemlist {
+    position: absolute;
+    right: 0;
+    width: 200px;
+}
+.item {
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.sidebar {
+    position: fixed;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+}

@@ -36,7 +36,9 @@ nav {
 	grid-template-rows: 0.25fr repeat(4, 1fr) 0.25fr;
 	grid-gap: 1px;
 }
-
+.character-inventory {
+	flex: 1;
+}
 .character-inventory h1 {
 	text-align: center;
 	font-size: 3.5rem;
