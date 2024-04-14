@@ -16,6 +16,7 @@ body {
 	font-family: "Saira Condensed", sans-serif;
 	color: var(--light-main-color);
 	background-color: var(--dark-main-color);
+	padding-top: 100px;
 }
 /* Nav bar*/
 nav {
@@ -176,4 +177,101 @@ nav {
 	nav {
 		opacity: 0;
 	}
+}
+.container {
+	width: 300px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.container h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.container label {
+	display: block;
+	margin-bottom: 5px;
+}
+.container input[type="text"],
+.container input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+.container input[type="checkbox"] + label {
+	margin-right: 5px;
+	display: inline;
+}
+.container button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	margin: 0 auto;
+	display: block;
+}
+.container button:hover {
+	background-color: #45a049;
+}
+nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #f8f8f8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	background-color: var(--dark-main-color);
+}
+
+.logo img {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%; /* This will make the image round */
+	object-fit: cover; /* This will maintain the aspect ratio of the image */
+}
+.buttons {
+	display: flex;
+	align-items: center;
+}
+.buttons .button {
+	margin-right: 40px;
+	padding: 15px 25px;
+	text-decoration: none;
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 5px;
+}
+
+.buttons .button:hover {
+	background-color: #45a049;
+}
+.profile-form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-fields {
+	flex: 1;
+}
+.profile-image {
+	float: right;
+	width: 200px;
+	text-align: center;
+	flex: 1;
+}
+
+.profile-image img {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+	margin-bottom: 20px;
 }
