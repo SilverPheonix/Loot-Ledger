@@ -27,8 +27,10 @@
 			<div class="character-inventory col-md-6">
 				<h1>Loot Ledger</h1>
 				<div class="character-inventory-slots">
-					<div class="inventory-slot" data-slot="0-1-10-11" draggable="true">⚔️</div>
-					<div class="inventory-slot" data-slot="2" draggable="true">⚔️</div>
+					<!--div class="inventory-slot" data-slot="0-1-10-11" draggable="true">⚔️</div-->
+					<div class="inventory-slot" data-slot="0" draggable="true"></div>
+					<div class="inventory-slot" data-slot="1" draggable="true"></div>
+					<div class="inventory-slot" data-slot="2" draggable="true"></div>
 					<div class="inventory-slot" data-slot="3" draggable="true"></div>
 					<div class="inventory-slot" data-slot="4" draggable="true"></div>
 					<div class="inventory-slot" data-slot="5" draggable="true"></div>
@@ -36,7 +38,8 @@
 					<div class="inventory-slot" data-slot="7" draggable="true"></div>
 					<div class="inventory-slot" data-slot="8" draggable="true"></div>
 					<div class="inventory-slot" data-slot="9" draggable="true"></div>
-
+					<div class="inventory-slot" data-slot="10" draggable="true"></div>
+					<div class="inventory-slot" data-slot="11" draggable="true"></div>
 					<div class="inventory-slot" data-slot="12" draggable="true"></div>
 					<div class="inventory-slot" data-slot="13" draggable="true"></div>
 					<div class="inventory-slot" data-slot="14" draggable="true"></div>

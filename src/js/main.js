@@ -1,8 +1,6 @@
 "use strict";
 //General Selectors
 const body = document.querySelector("body");
-const gameApp = document.querySelector(".game-display");
-const mainDisplay = document.querySelector(".game-actions-display");
 const inventoryContainer = document.querySelector(".character-inventory-slots");
 console.log(inventoryContainer);
 
