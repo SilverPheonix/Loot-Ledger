@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'src\db\dbconfig.php';
+include '..\src\db\dbconfig.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
@@ -24,22 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $hashed_password)) {
             // Passwords match, set the session variables
             $_SESSION['loggedin'] = true;
-            $_SESSION['u_username'] = $user['u_username'];
-            $_SESSION['u_role'] = $user['u_role'];
-            $_SESSION['u_firstname'] = $user['u_firstname'];
-            $_SESSION['u_lastname'] = $user['u_lastname'];
-            $_SESSION['u_email'] = $user['u_email'];
-            $_SESSION['u_title'] = $user['u_title'];    
-            $_SESSION['u_gender'] = $user['u_gender'];
-            $_SESSION['u_id'] = $user['u_id'];
+            $_SESSION['username'] = $user['u_username'];
+            $_SESSION['role'] = $user['u_role'];
+            $_SESSION['firstname'] = $user['u_firstname'];
+            $_SESSION['lastname'] = $user['u_lastname'];
+            $_SESSION['email'] = $user['u_email'];
+            $_SESSION['id'] = $user['id'];
 
             $stmt->close();
             $mysqli->close();
-
-            // Redirect to a new page based on the user role
-            if ($_SESSION["u_role"] == "user" || $_SESSION["u_role"] == "admin") {
-                header("Location: index.php");
+            header("Location: index.php");
                 exit;
+            // Redirect to a new page based on the user role
+            if ($_SESSION["role"] == "user" || $_SESSION["role"] == "admin") {
+                
             }
         } else {
             // Passwords don't match, show an error message

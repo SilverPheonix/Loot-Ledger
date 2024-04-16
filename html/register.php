@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'src\db\dbconfig.php';
+include '..\src\db\dbconfig.php';
 
-// define variables and set to empty values
+// define variables asnd set to empty values
 $fname = $lname = $email = $username = $password = $password_repeat = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -41,7 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bind_param("sssss", $fname, $lname, $hashed_password, $email, $username);
                     $stmt->execute();
                     $stmt->close();
-
+                    $_SESSION['loggedin'] = true;
+                    $_SESSION['username'] = $username;
+                    $_SESSION['firstname'] =$fname;
+                    $_SESSION['lastname'] = $lname;
+                    $_SESSION['email'] = $email;
                     $_SESSION['message'] = 'Registration successful';
                     header("Location: index.php");
                 }
@@ -79,12 +83,11 @@ function test_input($data)
         <script defer src="../src/js/main.js"></script>
     </head>
     <body>
-        <?php include "navbar.php";?>
         <main>
+            <?php include "navbar.php";?>
+            <div class="container">
             <div class="row justify-content-center">
-                <h1 class="blackcolor">Register</h1>
-                <hr>
-                </br>
+                <h2>Register</h2>
                 <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
                     <?php
                         if(isset($_SESSION['message'])) {
@@ -104,7 +107,7 @@ function test_input($data)
                         <input type="text" class="form-control" id="lname" name="lname" placeholder="Surname" alt="Please enter your surname"required>
                     </div>
                     <div class="form-group form-margin">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" alt="Please enter your E-Mail" required>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="E-Mail" alt="Please enter your E-Mail"required>
                     </div>
                     <div class="form-group form-margin">
                         <input type="text" class="form-control" id="username" name="username" placeholder="Username" alt="Please enter your Username" required>
@@ -115,9 +118,9 @@ function test_input($data)
                     <div class="form-group form-margin">
                         <input type="password" class="form-control" id="password_repeat" name="password_repeat" placeholder="Confirm Password" alt="Please confirm your password" required>
                     </div>
-                    <br>
                     <button name="submit" type="submit" class="btn btn-outline-primary" alt="Back to Homepage">Registrieren</button>
                 </form>
+            </div>
             </div>
         </main>
         <footer>

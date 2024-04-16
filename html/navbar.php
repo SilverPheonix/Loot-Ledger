@@ -6,7 +6,7 @@
 				<?php
 				session_start();
 
-				if (isset($_SESSION['username'])) {
+				if (isset($_SESSION['loggedin'])) {
 					echo '<a href="logout.php" class="button">Logout</a>';
 					echo '<a href="profile.php" class="button">Profile</a>';
 				} else {
