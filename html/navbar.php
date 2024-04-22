@@ -12,6 +12,10 @@
 				} else {
 					echo '<a href="register.php" class="button">Register</a>';
 					echo '<a href="login.php" class="button">Log in</a>';
+					//Weiterleitung zur Landing Page falls nicht eingeloggt & nicht auf erlaubten seiten
+					if( basename($_SERVER['PHP_SELF']) != 'landingpage.php' && basename($_SERVER['PHP_SELF']) != 'login.php'&&basename($_SERVER['PHP_SELF']) != 'register.php'){
+						header("Location: landingpage.php");
+					}
 				}
 				?>
 			</div>
