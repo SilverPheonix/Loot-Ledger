@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Passwords match, set the session variables
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $user['u_username'];
-            $_SESSION['role'] = $user['u_role'];
             $_SESSION['firstname'] = $user['u_firstname'];
             $_SESSION['lastname'] = $user['u_lastname'];
             $_SESSION['email'] = $user['u_email'];
@@ -34,11 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
             $mysqli->close();
             header("Location: index.php");
-                exit;
-            // Redirect to a new page based on the user role
-            if ($_SESSION["role"] == "user" || $_SESSION["role"] == "admin") {
-                
-            }
+            $_SESSION['message'] = 'Login successful';
+            exit;
         } else {
             // Passwords don't match, show an error message
             $_SESSION['message'] = 'Login failed, Passwords don\'t match';
@@ -50,16 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $mysqli->close();
-
-    if (isset($_SESSION["loggedin"]) && isset($_SESSION["username"]) && isset($_SESSION["role"])) {
-        // Redirect to a new page based on the user role
-        if ($_SESSION["role"] == "user") {
-            header("Location: index.php");
-        } else if ($_SESSION["role"] == "admin") {
-            header("Location: index.php");
-        }
-        exit;
-    }
 }
 
 ?>
@@ -78,9 +64,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
         <main>
             <?php include "navbar.php";?>
+           
             <div class="container">
+                    <?php
+                        if(isset($_SESSION['message'])) {
+                            if($_SESSION['message'] == 'Login successful') {
+                                echo '<div class="success-message alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
+                                unset($_SESSION['message']);
+                            } else {
+                                echo '<div class="error-message alert alert-danger" role="alert">' . $_SESSION['message'] . '</div>';
+                                unset($_SESSION['message']);
+                            }
+                        }
+                    ?>
                 <h2>Login</h2>
-                <form>
+                <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username">
                     <label for="password">Password:</label>
