@@ -1,3 +1,39 @@
+<?php
+session_start();
+include '..\src\db\dbconfig.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+
+    // Check if username or email has changed
+    if ($username != $_SESSION['username'] || $email != $_SESSION['email']) {
+        // Check if new username or email already exists in the database
+        $stmt = $mysqli->prepare("SELECT * FROM user WHERE u_username = ? OR u_email = ?");
+        $stmt->bind_param("ss", $username, $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        if ($result->num_rows > 0) {
+            $_SESSION['message'] = 'Username or Email already exists';
+        } else {
+            // Update the username and email in the database
+            $stmt = $mysqli->prepare("UPDATE user SET u_username = ?, u_email = ? WHERE u_id = ?");
+            $stmt->bind_param("ssi", $username, $email, $_SESSION['id']);
+            $stmt->execute();
+            $stmt->close();
+
+            // Update the session variables
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
+
+            $_SESSION['message'] = 'Profile updated successfully';
+        }
+    }
+    $mysqli->close(); // Close the database connection
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,7 +48,7 @@
                 display: flex;
             }
             .container {
-                width: 600px;
+                width: 900px;
                 padding: 40px;
             }
         </style>
@@ -20,23 +56,41 @@
         <script defer src="../src/js/main.js"></script>
     </head>
     <body>
-        <?php include "navbar.php";?>
-        <div class="container">
-            <h2>Profil</h2>
-            <form class="profile-form">
-                <div class="form-fields">
+    <?php include "navbar.php";?>
+    <div class="container">
+        <?php
+        if(isset($_SESSION['message'])) {
+            if($_SESSION['message'] == 'Profile updated successfully') {
+                echo '<div class="success-message alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
+                unset($_SESSION['message']);
+            } else {
+                echo '<div class="error-message alert alert-danger" role="alert">' . $_SESSION['message'] . '</div>';
+                unset($_SESSION['message']);
+            }
+        }
+        ?>
+        <h3>Profil</h3>
+        <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+            <div class="form-fields">
+                <div class="user-details">
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username">
+                    <input type="text" id="username" name="username" value="<?php echo $_SESSION['username']; ?>">
                     <label for="email">E-Mail Adresse:</label>
-                    <input type="text" id="email" name="email">
-                    <button type="button" id="change-password-button" onclick="location.href='changepw.php'">Change Password</button>
+                    <input type="text" id="email" name="email" value="<?php echo $_SESSION['email']; ?>">
+                    <div class="button-container">
+                        <button type="submit">Update Profile</button>
+                        <button type="button" id="change-password-button" onclick="location.href='changepw.php'">Change Password</button>
+                    </div>
                 </div>
-                <div class="profile-image">
-                    <img id="current-profile-image" src="path_to_current_profile_image" alt="Current Profile Image">
+                <div class="profile-image-container">
+                    <div class="profile-image">
+                        <img id="current-profile-image" src="path_to_current_profile_image" alt="Current Profile Image">
+                    </div>
                     <label for="image-upload">Bild hochladen:</label>
                     <input type="file" id="image-upload" name="image-upload">
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
     </body>
 </html>
