@@ -29,7 +29,7 @@
                     <input type="text" id="username" name="username">
                     <label for="email">E-Mail Adresse:</label>
                     <input type="text" id="email" name="email">
-                    <button type="button" id="change-password-button">Change Password</button>
+                    <button type="button" id="change-password-button" onclick="location.href='changepw.php'">Change Password</button>
                 </div>
                 <div class="profile-image">
                     <img id="current-profile-image" src="path_to_current_profile_image" alt="Current Profile Image">
