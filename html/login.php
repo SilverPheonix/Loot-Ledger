@@ -42,7 +42,7 @@
                         $_SESSION['firstname'] = $user['u_firstname'];
                         $_SESSION['lastname'] = $user['u_lastname'];
                         $_SESSION['email'] = $user['u_email'];
-                        $_SESSION['id'] = $user['id'];
+                        $_SESSION['id'] = $user['u_id'];
             
                         $stmt->close();
                         $mysqli->close();

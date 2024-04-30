@@ -58,6 +58,7 @@
             
                                 $stmt->bind_param("sssss", $fname, $lname, $hashed_password, $email, $username);
                                 $stmt->execute();
+                                $_SESSION['id'] = $stmt->insert_id;
                                 $stmt->close();
                                 $_SESSION['loggedin'] = true;
                                 $_SESSION['username'] = $username;
