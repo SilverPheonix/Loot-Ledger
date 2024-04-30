@@ -1,70 +1,3 @@
-<?php
-session_start();
-include '..\src\db\dbconfig.php';
-
-// define variables asnd set to empty values
-$fname = $lname = $email = $username = $password = $password_repeat = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fname = test_input($_POST["fname"]);
-    $lname = test_input($_POST["lname"]);
-    $email = test_input($_POST["email"]);
-    $username = test_input($_POST["username"]);
-    $password = test_input($_POST["password"]);
-    $password_repeat = test_input($_POST["password_repeat"]);
-
-    // Check if all fields are filled
-    if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($password_repeat) || empty($username)) {
-        $_SESSION['message'] = 'All fields must be filled out';
-    } else {
-        // Check if passwords match
-        if ($password != $password_repeat) {
-            $_SESSION['message'] = 'Passwords do not match';
-        } else {
-            // Check if email is valid
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['message'] = 'Invalid email format';
-            } else {
-                // Check if both username and email are unique
-                $stmt = $mysqli->prepare("SELECT * FROM user WHERE u_username = ? OR u_email = ?");
-                $stmt->bind_param("ss", $username, $email);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $stmt->close();
-
-                if ($result->num_rows > 0) {
-                    $_SESSION['message'] = 'Username or Email already exists';
-                } else {
-                    $stmt = $mysqli->prepare("INSERT INTO user (u_firstname, u_lastname, u_role, u_pw, u_status, u_email, u_username) VALUES (?, ?, 'user', ?, 1, ?, ?)");
-                    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-                    $stmt->bind_param("sssss", $fname, $lname, $hashed_password, $email, $username);
-                    $stmt->execute();
-                    $stmt->close();
-                    $_SESSION['loggedin'] = true;
-                    $_SESSION['username'] = $username;
-                    $_SESSION['firstname'] =$fname;
-                    $_SESSION['lastname'] = $lname;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['message'] = 'Registration successful';
-                    header("Location: index.php");
-                }
-            }
-        }
-    }
-    $mysqli->close(); // Close the database connection
-}
-function test_input($data)
-{
-    global $mysqli;
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -84,7 +17,71 @@ function test_input($data)
     </head>
     <body>
         <main>
-            <?php include "navbar.php";?>
+            <?php include "navbar.php";
+            include '..\src\db\dbconfig.php';
+
+            // define variables asnd set to empty values
+            $fname = $lname = $email = $username = $password = $password_repeat = "";
+            
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $fname = test_input($_POST["fname"]);
+                $lname = test_input($_POST["lname"]);
+                $email = test_input($_POST["email"]);
+                $username = test_input($_POST["username"]);
+                $password = test_input($_POST["password"]);
+                $password_repeat = test_input($_POST["password_repeat"]);
+            
+                // Check if all fields are filled
+                if (empty($fname) || empty($lname) || empty($email) || empty($password) || empty($password_repeat) || empty($username)) {
+                    $_SESSION['message'] = 'All fields must be filled out';
+                } else {
+                    // Check if passwords match
+                    if ($password != $password_repeat) {
+                        $_SESSION['message'] = 'Passwords do not match';
+                    } else {
+                        // Check if email is valid
+                        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            $_SESSION['message'] = 'Invalid email format';
+                        } else {
+                            // Check if both username and email are unique
+                            $stmt = $mysqli->prepare("SELECT * FROM user WHERE u_username = ? OR u_email = ?");
+                            $stmt->bind_param("ss", $username, $email);
+                            $stmt->execute();
+                            $result = $stmt->get_result();
+                            $stmt->close();
+            
+                            if ($result->num_rows > 0) {
+                                $_SESSION['message'] = 'Username or Email already exists';
+                            } else {
+                                $stmt = $mysqli->prepare("INSERT INTO user (u_firstname, u_lastname, u_role, u_pw, u_status, u_email, u_username) VALUES (?, ?, 'user', ?, 1, ?, ?)");
+                                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            
+                                $stmt->bind_param("sssss", $fname, $lname, $hashed_password, $email, $username);
+                                $stmt->execute();
+                                $stmt->close();
+                                $_SESSION['loggedin'] = true;
+                                $_SESSION['username'] = $username;
+                                $_SESSION['firstname'] =$fname;
+                                $_SESSION['lastname'] = $lname;
+                                $_SESSION['email'] = $email;
+                                $_SESSION['message'] = 'Registration successful';
+                                header("Location: index.php");
+                            }
+                        }
+                    }
+                }
+                $mysqli->close(); // Close the database connection
+            }
+            function test_input($data)
+            {
+                global $mysqli;
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
+            }
+            ?>
+            
             <div class="container">
             <div class="row justify-content-center">
                 <h2>Register</h2>

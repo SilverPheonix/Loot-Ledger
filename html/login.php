@@ -1,54 +1,4 @@
-<?php
-session_start();
-include '..\src\db\dbconfig.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $query = "SELECT * FROM user WHERE u_username = ?";
-    
-    // Use prepared statements to prevent SQL injection
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        // User found, verify the password
-        $user = $result->fetch_assoc();
-        $hashed_password = $user['u_pw'];
-        
-
-        // Verify the entered password against the hashed password
-        if (password_verify($password, $hashed_password)) {
-            // Passwords match, set the session variables
-            $_SESSION['loggedin'] = true;
-            $_SESSION['username'] = $user['u_username'];
-            $_SESSION['firstname'] = $user['u_firstname'];
-            $_SESSION['lastname'] = $user['u_lastname'];
-            $_SESSION['email'] = $user['u_email'];
-            $_SESSION['id'] = $user['id'];
-
-            $stmt->close();
-            $mysqli->close();
-            header("Location: index.php");
-            $_SESSION['message'] = 'Login successful';
-            exit;
-        } else {
-            // Passwords don't match, show an error message
-            $_SESSION['message'] = 'Login failed, Passwords don\'t match';
-        }
-    } else {
-        // User not found, show an error message
-        $_SESSION['message'] = 'Login failed, Username not found';
-    }
-
-    $stmt->close();
-    $mysqli->close();
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -63,7 +13,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </head>
     <body>
         <main>
-            <?php include "navbar.php";?>
+            <?php include "navbar.php";
+            include '..\src\db\dbconfig.php';
+            
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+            
+                $query = "SELECT * FROM user WHERE u_username = ?";
+                
+                // Use prepared statements to prevent SQL injection
+                $stmt = $mysqli->prepare($query);
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $result = $stmt->get_result();
+            
+                if ($result->num_rows == 1) {
+                    // User found, verify the password
+                    $user = $result->fetch_assoc();
+                    $hashed_password = $user['u_pw'];
+                    
+            
+                    // Verify the entered password against the hashed password
+                    if (password_verify($password, $hashed_password)) {
+                        // Passwords match, set the session variables
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['username'] = $user['u_username'];
+                        $_SESSION['firstname'] = $user['u_firstname'];
+                        $_SESSION['lastname'] = $user['u_lastname'];
+                        $_SESSION['email'] = $user['u_email'];
+                        $_SESSION['id'] = $user['id'];
+            
+                        $stmt->close();
+                        $mysqli->close();
+                        header("Location: index.php");
+                        $_SESSION['message'] = 'Login successful';
+                        exit;
+                    } else {
+                        // Passwords don't match, show an error message
+                        $_SESSION['message'] = 'Login failed, Passwords don\'t match';
+                    }
+                } else {
+                    // User not found, show an error message
+                    $_SESSION['message'] = 'Login failed, Username not found';
+                }
+            
+                $stmt->close();
+                $mysqli->close();
+            }
+            
+            ?>
            
             <div class="container">
                     <?php

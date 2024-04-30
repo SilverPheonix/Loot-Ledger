@@ -1,63 +1,3 @@
-<?php
-session_start();
-include '..\src\db\dbconfig.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-
-    // Check if username or email has changed
-    if ($username != $_SESSION['username'] || $email != $_SESSION['email']) {
-        // Check if new username or email already exists in the database
-        $result = NULL;
-        //If both have changed we use another query
-        if ($username != $_SESSION['username'] && $email != $_SESSION['email']) {
-            $query = "SELECT * FROM user WHERE u_username = ? OR u_email = ?";
-            $stmt = $mysqli->prepare($query);
-            $stmt->bind_param("ss", $username, $email);
-            $stmt->execute();
-            $result = $stmt->get_result();            
-            $stmt->close();
-        }
-        //if only one has changed
-        else{
-            $query = "";
-            $param = "";
-            //if the username has changed
-            if($username != $_SESSION['username']){
-                $query = "SELECT * FROM user WHERE u_username = ?";
-                $param = $username;
-            }
-            //if the email has changed
-            else{
-                $query = "SELECT * FROM user WHERE u_email = ?";
-                $param = $email;
-            }
-            $stmt = $mysqli->prepare($query);
-            $stmt->bind_param("s", $param);
-            $stmt->execute();
-            $result = $stmt->get_result();            
-            $stmt->close();
-        }
-        if ($result->num_rows > 0) {
-            $_SESSION['message'] = 'Username or Email already exists';
-        } else {
-            // Update the username and email in the database
-            $stmt = $mysqli->prepare("UPDATE user SET u_username = ?, u_email = ? WHERE u_id = ?");
-            $stmt->bind_param("ssi", $username, $email, $_SESSION['id']);
-            $stmt->execute();
-            $stmt->close();
-
-            // Update the session variables
-            $_SESSION['username'] = $username;
-            $_SESSION['email'] = $email;
-
-            $_SESSION['message'] = 'Profile updated successfully';
-        }
-    }
-    $mysqli->close(); // Close the database connection
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -80,7 +20,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <script defer src="../src/js/main.js"></script>
     </head>
     <body>
-    <?php include "navbar.php";?>
+    <?php include "navbar.php";
+    include '..\src\db\dbconfig.php';
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+    
+        // Check if username or email has changed
+        if ($username != $_SESSION['username'] || $email != $_SESSION['email']) {
+            // Check if new username or email already exists in the database
+            $result = NULL;
+            //If both have changed we use another query
+            if ($username != $_SESSION['username'] && $email != $_SESSION['email']) {
+                $query = "SELECT * FROM user WHERE u_username = ? OR u_email = ?";
+                $stmt = $mysqli->prepare($query);
+                $stmt->bind_param("ss", $username, $email);
+                $stmt->execute();
+                $result = $stmt->get_result();            
+                $stmt->close();
+            }
+            //if only one has changed
+            else{
+                $query = "";
+                $param = "";
+                //if the username has changed
+                if($username != $_SESSION['username']){
+                    $query = "SELECT * FROM user WHERE u_username = ?";
+                    $param = $username;
+                }
+                //if the email has changed
+                else{
+                    $query = "SELECT * FROM user WHERE u_email = ?";
+                    $param = $email;
+                }
+                $stmt = $mysqli->prepare($query);
+                $stmt->bind_param("s", $param);
+                $stmt->execute();
+                $result = $stmt->get_result();            
+                $stmt->close();
+            }
+            if ($result->num_rows > 0) {
+                $_SESSION['message'] = 'Username or Email already exists';
+            } else {
+                // Update the username and email in the database
+                $stmt = $mysqli->prepare("UPDATE user SET u_username = ?, u_email = ? WHERE u_id = ?");
+                $stmt->bind_param("ssi", $username, $email, $_SESSION['id']);
+                $stmt->execute();
+                $stmt->close();
+    
+                // Update the session variables
+                $_SESSION['username'] = $username;
+                $_SESSION['email'] = $email;
+    
+                $_SESSION['message'] = 'Profile updated successfully';
+            }
+        }
+        $mysqli->close(); // Close the database connection
+    }
+    ?>
     <div class="container">
         <?php
         if(isset($_SESSION['message'])) {
