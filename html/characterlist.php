@@ -23,7 +23,37 @@
         $mysqli->close();
     
     ?>
+   
     <script>
+        $(document).ready(function() {
+            $('.bi-x-lg').click(function() {
+                var id = $(this).parent().attr('id').substring(1);
+                confirmDelete(id);
+            });
+        }); 
+   
+         function confirmDelete(id) {
+        if (confirm("Are you sure you want to delete character " + $('#c' + id).text() + "?")) {
+            
+            deleteCharacter(id);
+        }
+    }
+
+    function deleteCharacter(id) {
+
+        $.ajax({
+            url: '../src/db/deleteCharacter.php',
+            method: 'POST',
+            data: { id: id },
+
+            success: function(response) {
+                $('#c' + id).remove();
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
         </script>
     </ul>
 </div>
