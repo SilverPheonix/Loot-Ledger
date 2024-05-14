@@ -36,3 +36,8 @@ CREATE TABLE `characters` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user`(`u_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+INSERT INTO `characters` (`id`, `user_id`, `name`, `strength`) VALUES
+(1, 2, 'Milo', 3),
+(3, 2, 'Henry', 1),
+(5, 2, 'Oulezo', 10);
