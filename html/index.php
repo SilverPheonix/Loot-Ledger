@@ -36,6 +36,9 @@
 				border-style: solid;
 				cursor: pointer;
 			}
+			.selected {
+				background-color: #d3d3d3; /* Beispiel Farbe für den ausgewählten Zustand */
+			}
         </style>
 		<link href="..\node_modules/gridstack/dist/gridstack.min.css" rel="stylesheet"/>
 		<script src="..\node_modules/gridstack/dist/gridstack-all.js"></script>
@@ -47,7 +50,7 @@
 		<main>
 			<?php include "characterlist.php";?>
 
-			<div class="character-inventory col-md-7 container">
+			<div class="character-inventory col-md-7 ">
 				<h1>Loot Ledger</h1>
 				
 				<div class=" d-none d-md-block">
@@ -65,9 +68,7 @@
 						</div>
 						<br>
 				</div>
-					<div ><style type="text/css" gs-style-id="gs-id-0"></style>
-						<div class="grid-stack ui-droppable ui-droppable-over " gs-current-row="8" >
-						
+					<div class="container-fluid"><style type="text/css" gs-style-id="gs-id-0"></style>
 					</div>
 				</div>
 				</div>
@@ -75,18 +76,6 @@
 			</div>
 			
 				<script>
-					let grid = GridStack.init({
-						cellHeight: 70,
-						acceptWidgets: true,
-						removable: '#trash', // drag-out delete class
-						disableOneColumnMode: true,
-						float: false,
-						minRow: 8, // Mindestanzahl der Zeilen
-						maxRow: 8
-					});
-
-					GridStack.setupDragIn('.newWidget', { appendTo: 'body', helper: 'clone', scroll: false });
-
 					let items = [
 						{x: 0, y: 0, w: 4, h: 2, content: '1'},
 						{x: 7, y: 0, w: 2, h: 1, minW: 2, noResize: true, content: '<p class="card-text text-center" style="margin-bottom: 0">Drag me!<p class="card-text text-center"style="margin-bottom: 0"><ion-icon name="hand" style="font-size: 300%"></ion-icon><p class="card-text text-center" style="margin-bottom: 0">...but don\'t resize me!'},
@@ -95,26 +84,60 @@
 						{x: 2, y: 2, w: 2, h: 4, content: '6'},
 						{x: 8, y: 2, w: 4, h: 2, content: '7'},
 					];
-					
-					grid.load(items);
-					
-					grid.on('added removed change', function(e, items) {
-						let str = '';
-						items.forEach(function(item) { str += ' (x,y)=' + item.x + ',' + item.y; });
-						console.log(e.type + ' ' + items.length + ' items:' + str );
-					});
+					$(document).ready(function() {
+						$('.list-group-item').on('click', function() {
+							// Entferne die Klasse 'selected' von allen Listenelementen
+							$('.list-group-item').removeClass('selected');
 
-					// Begrenzung der Positionierung innerhalb des Grids
-					grid.on('change', function (event, items) {
-						items.forEach(function (item) {
-							if (item.x + item.w > 12) {
-								grid.update(item.el, { x: 12 - item.w });
-							}
-							if (item.y + item.h > 8) {
-								grid.update(item.el, { y: 8 - item.h });
-							}
+							// Füge die Klasse 'selected' zum angeklickten Element hinzu
+							$(this).addClass('selected');
+
+							// Greife auf den strength-Wert zu
+							let strengthValue = $(this).data('strength');
+							console.log('Strength:', parseInt(strengthValue/2));
+
+							// Optional: Verwende den strength-Wert weiter
+							// Hier kannst du zusätzlichen Code hinzufügen, um den Wert weiterzuverarbeiten
+							load_grid(parseInt(strengthValue/2));
 						});
+
 					});
+					function load_grid(str){
+						if (window.grid) {
+							console.log("Destroying old grid");
+							grid.destroy();
+						}
+						window.grid = GridStack.addGrid(document.querySelector('.container-fluid'),{
+							cellHeight: 70,
+							acceptWidgets: true,
+							removable: '#trash', // drag-out delete class
+							disableOneColumnMode: true,
+							float: false,
+							minRow: str, // Mindestanzahl der Zeilen
+							maxRow: str,
+						});
+						
+						GridStack.setupDragIn('.newWidget', { appendTo: 'body', helper: 'clone', scroll: false });
+						grid.removeAll();
+						grid.load(items);
+							grid.on('added removed change', function(e, items) {
+							let str = '';
+							items.forEach(function(item) { str += ' (x,y)=' + item.x + ',' + item.y; });
+							console.log(e.type + ' ' + items.length + ' items:' + str );
+						});
+
+						// Begrenzung der Positionierung innerhalb des Grids
+						grid.on('change', function (event, items) {
+							items.forEach(function (item) {
+								if (item.x + item.w > 12) {
+									grid.update(item.el, { x: 12 - item.w });
+								}
+								if (item.y + item.h > str) {
+									grid.update(item.el, { y: str - item.h });
+								}
+							});
+						});
+					}
 
 					function createCharacter() {
 						var characterName = prompt("Enter character name:");

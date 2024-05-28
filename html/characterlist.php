@@ -15,7 +15,7 @@
         if ($result->num_rows >0) {
             for($i=0; $i<$result->num_rows;$i++){
                 $row= $result->fetch_assoc();
-                echo("<li class='list-group-item' id='c".$row['id']."'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
+                echo("<li class='list-group-item' id='c".$row['id']."' data-strength='".$row['strength']."'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
             }
             
         } else {
