@@ -18,7 +18,27 @@
             main {
                 display: flex;
             }
+			.grid-stack { 
+				background: #b3b3cc;
+				width: 100%;
+            	max-height: 100vh;
+				border-radius:10px;
+				margin: 5px;
+				overflow: hidden;
+			}
+  			.grid-stack-item-content {
+				text-align: center;
+				padding: 5px;
+				background-color: #3c3c44;
+				border-radius:10px;
+				border-color: white;
+				border-width: 2px;
+				border-style: solid;
+				cursor: pointer;
+			}
         </style>
+		<link href="..\node_modules/gridstack/dist/gridstack.min.css" rel="stylesheet"/>
+		<script src="..\node_modules/gridstack/dist/gridstack-all.js"></script>
 		<title>RPG Inventory | Simple Character Inventory Design</title>
 		<script defer src="../src/js/main.js"></script>
 	</head>
@@ -27,118 +47,75 @@
 		<main>
 			<?php include "characterlist.php";?>
 
-			<div class="character-create">
-				<button onclick="createCharacter()">Create Character</button>
+			<div class="character-inventory col-md-7 container">
+				<h1>Loot Ledger</h1>
+				
+				<div class=" d-none d-md-block">
+						<div id="trash" style="padding: 5px; margin-bottom: 15px;" class="text-center ui-droppable ui-droppable-over">
+							<div>
+							<button >Drop here to remove!</button>
+							</div>
+						</div>
+						<div class="newWidget grid-stack-item" gs-x="2" gs-y="4" gs-w="2">
+							<div class="grid-stack-item-content" style="padding: 5px;">
+								<div>
+									<span>Drag me in the dashboard!</span>
+								</div>
+							</div>
+						</div>
+						<br>
+				</div>
+					<div ><style type="text/css" gs-style-id="gs-id-0"></style>
+						<div class="grid-stack ui-droppable ui-droppable-over " gs-current-row="8" >
+						
+					</div>
+				</div>
+				</div>
+  
 			</div>
 			
-			<div class="character-inventory col-md-6">
-				<h1>Loot Ledger</h1>
-				<div class="character-inventory-slots">
-					<!--div class="inventory-slot" data-slot="0-1-10-11" draggable="true">⚔️</div-->
-					<div class="inventory-slot" data-slot="0" draggable="true"></div>
-					<div class="inventory-slot" data-slot="1" draggable="true"></div>
-					<div class="inventory-slot" data-slot="2" draggable="true"></div>
-					<div class="inventory-slot" data-slot="3" draggable="true"></div>
-					<div class="inventory-slot" data-slot="4" draggable="true"></div>
-					<div class="inventory-slot" data-slot="5" draggable="true"></div>
-					<div class="inventory-slot" data-slot="6" draggable="true"></div>
-					<div class="inventory-slot" data-slot="7" draggable="true"></div>
-					<div class="inventory-slot" data-slot="8" draggable="true"></div>
-					<div class="inventory-slot" data-slot="9" draggable="true"></div>
-					<div class="inventory-slot" data-slot="10" draggable="true"></div>
-					<div class="inventory-slot" data-slot="11" draggable="true"></div>
-					<div class="inventory-slot" data-slot="12" draggable="true"></div>
-					<div class="inventory-slot" data-slot="13" draggable="true"></div>
-					<div class="inventory-slot" data-slot="14" draggable="true"></div>
-					<div class="inventory-slot" data-slot="15" draggable="true"></div>
-					<div class="inventory-slot" data-slot="16" draggable="true"></div>
-					<div class="inventory-slot" data-slot="17" draggable="true"></div>
-					<div class="inventory-slot" data-slot="18" draggable="true"></div>
-					<div class="inventory-slot" data-slot="19" draggable="true"></div>
-					<div class="inventory-slot" data-slot="20" draggable="true"></div>
-					<div class="inventory-slot" data-slot="21" draggable="true"></div>
-					<div class="inventory-slot" data-slot="22" draggable="true"></div>
-					<div class="inventory-slot" data-slot="23" draggable="true"></div>
-					<div class="inventory-slot" data-slot="24" draggable="true"></div>
-					<div class="inventory-slot" data-slot="25" draggable="true"></div>
-					<div class="inventory-slot" data-slot="26" draggable="true"></div>
-					<div class="inventory-slot" data-slot="27" draggable="true"></div>
-					<div class="inventory-slot" data-slot="28" draggable="true"></div>
-					<div class="inventory-slot" data-slot="29" draggable="true"></div>
-					<div class="inventory-slot" data-slot="30" draggable="true"></div>
-					<div class="inventory-slot" data-slot="31" draggable="true"></div>
-					<div class="inventory-slot" data-slot="32" draggable="true"></div>
-					<div class="inventory-slot" data-slot="33" draggable="true"></div>
-					<div class="inventory-slot" data-slot="34" draggable="true"></div>
-					<div class="inventory-slot" data-slot="35" draggable="true"></div>
-					<div class="inventory-slot" data-slot="36" draggable="true"></div>
-					<div class="inventory-slot" data-slot="37" draggable="true"></div>
-					<div class="inventory-slot" data-slot="38" draggable="true"></div>
-					<div class="inventory-slot" data-slot="39" draggable="true"></div>
-					<div class="inventory-slot" data-slot="40" draggable="true"></div>
-					<div class="inventory-slot" data-slot="41" draggable="true"></div>
-					<div class="inventory-slot" data-slot="42" draggable="true"></div>
-					<div class="inventory-slot" data-slot="43" draggable="true"></div>
-					<div class="inventory-slot" data-slot="44" draggable="true"></div>
-					<div class="inventory-slot" data-slot="45" draggable="true"></div>
-					<div class="inventory-slot" data-slot="46" draggable="true"></div>
-					<div class="inventory-slot" data-slot="47" draggable="true"></div>
-					<div class="inventory-slot" data-slot="48" draggable="true"></div>
-					<div class="inventory-slot" data-slot="49" draggable="true"></div>
-					<div class="inventory-slot" data-slot="50" draggable="true"></div>
-					<div class="inventory-slot" data-slot="51" draggable="true"></div>
-					<div class="inventory-slot" data-slot="52" draggable="true"></div>
-					<div class="inventory-slot" data-slot="53" draggable="true"></div>
-					<div class="inventory-slot" data-slot="54" draggable="true"></div>
-					<div class="inventory-slot" data-slot="55" draggable="true"></div>
-					<div class="inventory-slot" data-slot="56" draggable="true"></div>
-					<div class="inventory-slot" data-slot="57" draggable="true"></div>
-					<div class="inventory-slot" data-slot="58" draggable="true"></div>
-					<div class="inventory-slot" data-slot="59" draggable="true"></div>
-					<div class="inventory-slot" data-slot="60" draggable="true"></div>
-					<div class="inventory-slot" data-slot="61" draggable="true"></div>
-					<div class="inventory-slot" data-slot="62" draggable="true"></div>
-					<div class="inventory-slot" data-slot="63" draggable="true"></div>
-					<div class="inventory-slot" data-slot="64" draggable="true"></div>
-					<div class="inventory-slot" data-slot="65" draggable="true"></div>
-					<div class="inventory-slot" data-slot="66" draggable="true"></div>
-					<div class="inventory-slot" data-slot="67" draggable="true"></div>
-					<div class="inventory-slot" data-slot="68" draggable="true"></div>
-					<div class="inventory-slot" data-slot="69" draggable="true"></div>
-					<div class="inventory-slot" data-slot="70" draggable="true"></div>
-					<div class="inventory-slot" data-slot="71" draggable="true"></div>
-					<div class="inventory-slot" data-slot="72" draggable="true"></div>
-					<div class="inventory-slot" data-slot="73" draggable="true"></div>
-					<div class="inventory-slot" data-slot="74" draggable="true"></div>
-					<div class="inventory-slot" data-slot="75" draggable="true"></div>
-					<div class="inventory-slot" data-slot="76" draggable="true"></div>
-					<div class="inventory-slot" data-slot="77" draggable="true"></div>
-					<div class="inventory-slot" data-slot="78" draggable="true"></div>
-					<div class="inventory-slot" data-slot="79" draggable="true"></div>
-					<div class="inventory-slot" data-slot="80" draggable="true"></div>
-					<div class="inventory-slot" data-slot="81" draggable="true"></div>
-					<div class="inventory-slot" data-slot="82" draggable="true"></div>
-					<div class="inventory-slot" data-slot="83" draggable="true"></div>
-					<div class="inventory-slot" data-slot="84" draggable="true"></div>
-					<div class="inventory-slot" data-slot="85" draggable="true"></div>
-					<div class="inventory-slot" data-slot="86" draggable="true"></div>
-					<div class="inventory-slot" data-slot="87" draggable="true"></div>
-					<div class="inventory-slot" data-slot="88" draggable="true"></div>
-					<div class="inventory-slot" data-slot="89" draggable="true"></div>
-					<div class="inventory-slot" data-slot="90" draggable="true"></div>
-					<div class="inventory-slot" data-slot="91" draggable="true"></div>
-					<div class="inventory-slot" data-slot="92" draggable="true"></div>
-					<div class="inventory-slot" data-slot="93" draggable="true"></div>
-					<div class="inventory-slot" data-slot="94" draggable="true"></div>
-					<div class="inventory-slot" data-slot="95" draggable="true"></div>
-					<div class="inventory-slot" data-slot="96" draggable="true"></div>
-					<div class="inventory-slot" data-slot="97" draggable="true"></div>
-					<div class="inventory-slot" data-slot="98" draggable="true"></div>
-					<div class="inventory-slot" data-slot="99" draggable="true"></div>
-				</div>
-			</div>	
-			
 				<script>
+					let grid = GridStack.init({
+						cellHeight: 70,
+						acceptWidgets: true,
+						removable: '#trash', // drag-out delete class
+						disableOneColumnMode: true,
+						float: false,
+						minRow: 8, // Mindestanzahl der Zeilen
+						maxRow: 8
+					});
+
+					GridStack.setupDragIn('.newWidget', { appendTo: 'body', helper: 'clone', scroll: false });
+
+					let items = [
+						{x: 0, y: 0, w: 4, h: 2, content: '1'},
+						{x: 7, y: 0, w: 2, h: 1, minW: 2, noResize: true, content: '<p class="card-text text-center" style="margin-bottom: 0">Drag me!<p class="card-text text-center"style="margin-bottom: 0"><ion-icon name="hand" style="font-size: 300%"></ion-icon><p class="card-text text-center" style="margin-bottom: 0">...but don\'t resize me!'},
+						{x: 10, y: 0, w: 2, h: 2, content: '4'},
+						{x: 0, y: 2, w: 2, h: 2, content: '5'},
+						{x: 2, y: 2, w: 2, h: 4, content: '6'},
+						{x: 8, y: 2, w: 4, h: 2, content: '7'},
+					];
+					
+					grid.load(items);
+					
+					grid.on('added removed change', function(e, items) {
+						let str = '';
+						items.forEach(function(item) { str += ' (x,y)=' + item.x + ',' + item.y; });
+						console.log(e.type + ' ' + items.length + ' items:' + str );
+					});
+
+					// Begrenzung der Positionierung innerhalb des Grids
+					grid.on('change', function (event, items) {
+						items.forEach(function (item) {
+							if (item.x + item.w > 12) {
+								grid.update(item.el, { x: 12 - item.w });
+							}
+							if (item.y + item.h > 8) {
+								grid.update(item.el, { y: 8 - item.h });
+							}
+						});
+					});
+
 					function createCharacter() {
 						var characterName = prompt("Enter character name:");
 						var characterStrength = prompt("Enter character strength:");

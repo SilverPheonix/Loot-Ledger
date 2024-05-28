@@ -1,6 +1,9 @@
 <div class="sidebar col-md-3">
-    <div class = container>
     
+    <div class = container>
+        <div class="character-create">
+				<button onclick="createCharacter()">Create Character</button>
+		</div><br>
     <ul class="list-group">
     <?php
         include '..\src\db\dbconfig.php';
