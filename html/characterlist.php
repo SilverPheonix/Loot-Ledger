@@ -18,7 +18,9 @@
         } else {
             echo("<p>You haven't created charcters yet!</p>");
         }
-    
+        // button to create a new character that links to createCharacter.php
+        echo("<a href='createCharacter.php' class='btn btn-primary'>Create Character</a>");
+            
         $stmt->close();
         $mysqli->close();
     
