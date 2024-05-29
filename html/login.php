@@ -82,7 +82,9 @@
                     <input type="text" id="username" name="username">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password">
-                    <button type="submit">Login</button>
+                    <div class="center-buttons">
+                        <a href="#" onclick="document.forms[0].submit();" class="fantasy-button">Login</a>
+                    </div>
                 </form>
             </div>
         </main>

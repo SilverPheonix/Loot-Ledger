@@ -100,8 +100,8 @@
                     <label for="email">E-Mail Adresse:</label>
                     <input type="text" id="email" name="email" value="<?php echo $_SESSION['email']; ?>">
                     <div class="button-container">
-                        <button type="submit">Update Profile</button>
-                        <button type="button" id="change-password-button" onclick="location.href='changepw.php'">Change Password</button>
+                        <a href="#" class="fantasy-button" onclick="document.querySelector('form').submit();">Update Profile</a>
+                        <a href="changepw.php" class="fantasy-button">Change Password</a>
                     </div>
                 </div>
                 <div class="profile-image-container">

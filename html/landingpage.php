@@ -30,8 +30,8 @@
                     <p style="text-align:center;" >This RPG Inventory Management System allows users to create and manage inventories for their RPG characters conveniently over the internet. The size of these inventories dynamically adjusts based on the Strength Modifier of the character. The stronger the character, the more space available in the inventory. The inventory itself consists of a grid where the character's items can be placed. Each item has its own size (e.g., short sword: 1x2) and can be rotated to stack efficiently.</p>
                     <br><hr><br>
                     <div style="justify-content: center;" class="buttons">
-                        <a href="register.php" class="button">Register</a>
-                        <a href="login.php" class="button">Log in</a>
+                        <a href="register.php" class="button, fantasy-button">Register</a>
+                        <a href="login.php" class="button, fantasy-button">Log in</a>
 			        </div>
                 </div>
                 <div class ="col-sm-12 col-md-6">

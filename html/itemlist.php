@@ -3,7 +3,9 @@
                 <div class = container>
                 <label for="itemName"></label><input id="itemName" type="text" placeholder="Name des Items">
                 <label for="itemColor"></label><input id="itemColor" type="color">
-                <button onclick="addItem()">Add Item</button><br><hr><br>
+                <div class="center-buttons">
+                    <a href="#" class="fantasy-button" onclick="addItem()">Add Item</a><br><hr><br>
+                </div>
                 <div id="itemlist">
                     <div class="card">
                         <div class="card-header">
@@ -11,9 +13,7 @@
                         </div>
                         <div id="battleaxe" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="101"draggable="true">
-                                    <img class="item-img" src="../src/img/items/Battleaxe.jpeg">
-                                </div>
+                                <img class="item-img" src="../src/img/items/Battleaxe.jpeg">
                             </div>
                         </div>
                     </div>
@@ -23,9 +23,7 @@
                         </div>
                         <div id="dagger" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="102"draggable="true">
-                                    <img  class="item-img" src="../src/img/items/Dagger1.jpeg">
-                                </div>
+                                <img  class="item-img" src="../src/img/items/Dagger1.jpeg">
                             </div>
                         </div>
                     </div>
@@ -35,9 +33,7 @@
                         </div>
                         <div id="shield" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="103"draggable="true">
-                                    <img  class="item-img" src="../src/img/items/Shield.jpeg">
-                                </div>
+                                <img  class="item-img" src="../src/img/items/Shield.jpeg">
                             </div>
                         </div>
                     </div>
@@ -47,9 +43,7 @@
                         </div>
                         <div id="shortsword" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="104"draggable="true">
-                                    <img  class="item-img" src="../src/img/items/Shortsword.jpeg">
-                                </div>
+                                <img  class="item-img" src="../src/img/items/Shortsword.jpeg">
                             </div>
                         </div>
                     </div>
@@ -59,9 +53,7 @@
                         </div>
                         <div id="Spear" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="105"draggable="true">
-                                    <img  class="item-img" src="../src/img/items/Spear.jpeg">
-                                </div>
+                                <img  class="item-img" src="../src/img/items/Spear.jpeg">
                             </div>
                         </div>
                     </div>
@@ -71,9 +63,7 @@
                         </div>
                         <div id="Backpack" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="106"draggable="true">
-                                    <img  class="item-img" src="../src/img/items/Backpack.jpeg">
-                                </div>
+                                <img  class="item-img" src="../src/img/items/Backpack.jpeg">
                             </div>
                         </div>
                     </div>
@@ -83,9 +73,7 @@
                         </div>
                         <div id="Shortbow" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="107"draggable="true">
-                                    <img  class="item-img"src="../src/img/items/Shortbow.jpeg">
-                                </div>
+                                <img  class="item-img"src="../src/img/items/Shortbow.jpeg">
                             </div>
                         </div>
                     </div>
@@ -95,9 +83,7 @@
                         </div>
                         <div id="Longbow" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="108"draggable="true">
-                                    <img  class="item-img" src="../src/img/items/Longbow.jpeg">
-                                </div>
+                                <img  class="item-img" src="../src/img/items/Longbow.jpeg">
                             </div>
                         </div>
                     </div>
@@ -107,9 +93,7 @@
                         </div>
                         <div id="Crossbow" class="collapse">
                             <div class="card-body">
-                                <div class="inventory-slot" data-slot="109"draggable="true">
-                                    <img  class="item-img" % src="../src/img/items/Crossbow.jpeg">
-                                </div>
+                                <img  class="item-img" % src="../src/img/items/Crossbow.jpeg">
                             </div>
                         </div>
                     </div>
