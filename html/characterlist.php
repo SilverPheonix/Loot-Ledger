@@ -1,6 +1,9 @@
 <div class="sidebar col-md-3">
-    <div class = container>
     
+    <div class = container>
+        <div class="character-create">
+				<button onclick="createCharacter()">Create Character</button>
+		</div><br>
     <ul class="list-group">
     <?php
         include '..\src\db\dbconfig.php';
@@ -12,7 +15,7 @@
         if ($result->num_rows >0) {
             for($i=0; $i<$result->num_rows;$i++){
                 $row= $result->fetch_assoc();
-                echo("<li class='list-group-item' id='c".$row['id']."'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
+                echo("<li class='list-group-item' id='c".$row['id']."' data-strength='".$row['strength']."'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
             }
             
         } else {
@@ -25,7 +28,37 @@
         $mysqli->close();
     
     ?>
+   
     <script>
+        $(document).ready(function() {
+            $('.bi-x-lg').click(function() {
+                var id = $(this).parent().attr('id').substring(1);
+                confirmDelete(id);
+            });
+        }); 
+   
+         function confirmDelete(id) {
+        if (confirm("Are you sure you want to delete character " + $('#c' + id).text() + "?")) {
+            
+            deleteCharacter(id);
+        }
+    }
+
+    function deleteCharacter(id) {
+
+        $.ajax({
+            url: '../src/db/deleteCharacter.php',
+            method: 'POST',
+            data: { id: id },
+
+            success: function(response) {
+                $('#c' + id).remove();
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
+    }
         </script>
     </ul>
 </div>
