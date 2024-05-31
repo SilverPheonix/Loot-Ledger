@@ -75,14 +75,14 @@
                 }
             ?>
             <h2>Change Password</h2>
-            <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+            <form id="change-password-form" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
                 <label for="current_password">Current Password:</label>
                 <input type="password" id="current_password" name="current_password">
                 <label for="new_password">New Password:</label>
                 <input type="password" id="new_password" name="new_password">
                 <label for="new_password_repeat">Repeat New Password:</label>
                 <input type="password" id="new_password_repeat" name="new_password_repeat">
-                <button type="submit">Change Password</button>
+                <a href="#" id="change-password-link" class="fantasy-button-reg">Change Password</a>
             </form>
         </div>
         <footer>
@@ -90,5 +90,11 @@
         </footer>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script>
+            document.getElementById('change-password-link').addEventListener('click', function(event) {
+                event.preventDefault();
+                document.getElementById('change-password-form').submit();
+            });
+        </script>
     </body>
 </html>

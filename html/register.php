@@ -116,9 +116,7 @@
                     <div class="form-group form-margin">
                         <input type="password" class="form-control" id="password_repeat" name="password_repeat" placeholder="Confirm Password" alt="Please confirm your password" required>
                     </div>
-                    <div class="center-buttons">
-                        <a href="#" onclick="return logFormData();" class="fantasy-button" alt="Back to Homepage">Registrieren</a>
-                    </div>
+                    <button type="submit" onclick="return logFormData();" class="fantasy-button-reg">Register</button>
                 </form>
             </div>
             </div>

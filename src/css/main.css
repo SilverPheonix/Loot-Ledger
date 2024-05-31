@@ -113,19 +113,7 @@ h3 {
 	margin-right: 5px;
 	display: inline;
 }
-.container button {
-	background-color: #4CAF50;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	margin: 0 auto;
-	display: block;
-}
-.container button:hover {
-	background-color: #45a049;
-}
+
 nav {
 	position: fixed;
 	top: 0;
@@ -246,6 +234,43 @@ nav {
 /* Adjusting the margin for spacing */
 .center-buttons a {
     margin: 0 auto;
+}
+
+.fantasy-button-reg {
+    margin-right: 2vh;
+    padding-right: 2vh;
+    display: inline-block; 
+    background-color: #5DADE2; /* Heller Blauton */
+    color: #FFFFFF; /* Weißer Text */
+    border: 2px solid #3498DB; /* Mittelblau */
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    position: relative;
+    text-align: center; /* Center text inside button */
+    line-height: 1.5; /* Adjust line-height for better vertical alignment */
+	margin: 0 auto;
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* Hover-Effekte */
+.fantasy-button-reg:hover {
+    box-shadow: 0 0 10px 2px #F7DC6F; /* Gelber Leuchteffekt */
+    transform: translateY(-2px); /* Leichter "Schwebe"-Effekt */
+}
+
+/* Active-Effekte */
+.fantasy-button-reg:active {
+    background-color: #154360; /* Dunkler Blauton beim Klicken */
+    color: #F7DC6F; /* Gelber Text beim Klicken */
+    transform: translateY(1px); /* Leichter "Klick"-Effekt */
 }
 
 .navbar-buttons{
