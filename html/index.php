@@ -84,13 +84,11 @@
 						{x: 2, y: 2, w: 2, h: 4, content: '6'},
 						{x: 8, y: 2, w: 4, h: 2, content: '7'},
 					];
-					$(document).ready(function() {
-						$('.list-group-item').on('click', function() {
-							// Entferne die Klasse 'selected' von allen Listenelementen
-							$('.list-group-item').removeClass('selected');
 
-							// Füge die Klasse 'selected' zum angeklickten Element hinzu
-							$(this).addClass('selected');
+					$(document).ready(function() {
+						$('.list-group-item, .first-list-group-item').on('click', function() {
+							// Entferne die Klasse 'selected' von allen Listenelementen
+							$('.list-group-item, .first-list-group-item').removeClass('selected');
 
 							// Greife auf den strength-Wert zu
 							let strengthValue = $(this).data('strength');
@@ -100,8 +98,22 @@
 							// Hier kannst du zusätzlichen Code hinzufügen, um den Wert weiterzuverarbeiten
 							load_grid(parseInt(strengthValue/2));
 						});
-
 					});
+
+					// $(document).ready(function() {
+					// 	$('.list-group-item').on('click', function() {
+					// 		// Entferne die Klasse 'selected' von allen Listenelementen
+					// 		$('.list-group-item').removeClass('selected');
+
+					// 		// Greife auf den strength-Wert zu
+					// 		let strengthValue = $(this).data('strength');
+					// 		console.log('Strength:', parseInt(strengthValue/2));
+
+					// 		// Optional: Verwende den strength-Wert weiter
+					// 		// Hier kannst du zusätzlichen Code hinzufügen, um den Wert weiterzuverarbeiten
+					// 		load_grid(parseInt(strengthValue/2));
+					// 	});
+					// });
 					function load_grid(str){
 						if (window.grid) {
 							console.log("Destroying old grid");
