@@ -17,10 +17,30 @@
                         $row= $result->fetch_assoc();
                         if ($i == 0) {
                             // This is the first character, use a different background image
-                            echo("<li class='first-list-group-item' id='c".$row['id']."' data-strength='".$row['strength']."' class='top-list-background-img' style='background-image: url(\"../src/img/list-goup-styling/top-list.png\");'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
+                            // echo("<li class='first-list-group-item' id='c".$row['id']."' data-strength='".$row['strength']."' class='top-list-background-img' style='background-image: url(\"../src/img/list-goup-styling/top-list.png\");'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
+                            echo "<li class='first-list-group-item top-list-background-img' id='c".$row['id']."' data-strength='".$row['strength']."' style='background-image: url(\"../src/img/list-goup-styling/top-list.png\");'>";
+                            echo "<div class='first-list-item-name'>".$row['name']."</div>";
+                            // echo "<div class='first-list-item-strength-icons'>Strength - ".$row['strength']."<span><i class='bi bi-x-lg'></i><i class='bi bi-pencil-square'></i></span></div>";
+                            echo "<div class='first-list-item-strength-icons'>Strength - ".$row['strength']." 
+                            <span style='margin-left: 14px;'><i class='bi bi-x-lg' 
+                            style='color: white; -webkit-text-stroke: 0.5px black; text-shadow: 0 0 1px #EAEAF1; font-size: 15px;'>
+                            </i><i class='bi bi-pencil-square'
+                             style='color: white; -webkit-text-stroke: 0.5px black; text-shadow: 0 0 1px #EAEAF1; font-size: 15px;'>
+                            </i></span></div>";
+                            echo "</li>";
                         } else {
                             // This is not the first character, use the same background image
-                            echo("<li class='list-group-item' id='c".$row['id']."' data-strength='".$row['strength']."' class='list-element-background-img' style='background-image: url(\"../src/img/list-goup-styling/list-element.png\");'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
+                            // echo("<li class='list-group-item' id='c".$row['id']."' data-strength='".$row['strength']."' class='list-element-background-img' style='background-image: url(\"../src/img/list-goup-styling/list-element.png\");'>".$row['name']."(".$row['strength'].")<i style='float:right;' class='bi bi-x-lg'></i><i style='float:right;' class='bi bi-pencil-square' ></i></li>");
+                            echo "<li class='list-group-item list-element-background-img' id='c".$row['id']."' data-strength='".$row['strength']."' style='background-image: url(\"../src/img/list-goup-styling/list-element.png\");'>";
+                            echo "<div class='list-item-name'>".$row['name']."</div>";
+                            echo "<div class='list-item-strength-icons'>Strength - ".$row['strength']." 
+                            <span style='margin-left: 14px;'><i class='bi bi-x-lg' 
+                            style='color: white; -webkit-text-stroke: 0.5px black; text-shadow: 0 0 1px #EAEAF1; font-size: 15px;'>
+                            </i><i class='bi bi-pencil-square'
+                             style='color: white; -webkit-text-stroke: 0.5px black; text-shadow: 0 0 1px #EAEAF1; font-size: 15px;'>
+                            </i></span></div>";
+                            echo "</li>";
+
                         }
                     }
                 } else {
@@ -32,8 +52,9 @@
             ?>
             <script>
                 $(document).ready(function() {
-                    $('.bi-x-lg').click(function() {
-                        var id = $(this).parent().attr('id').substring(1);
+                    // Use event delegation to handle click events on dynamically added delete buttons
+                    $('.list-group').on('click', '.bi-x-lg', function() {
+                        var id = $(this).closest('li').attr('id').substring(1);
                         confirmDelete(id);
                     });
                 }); 

@@ -32,6 +32,7 @@ CREATE TABLE `characters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
+  -- `nickname` varchar(45) DEFAULT NULL,
   `strength` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user`(`u_id`) ON DELETE CASCADE
