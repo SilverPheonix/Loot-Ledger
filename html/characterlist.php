@@ -24,7 +24,7 @@
                         }
                     }
                 } else {
-                    echo("<p>You haven't created characters yet!</p>");
+                    echo("<p class=\"no-character-yet-message\" style='background-image: url(\"../src/img/list-goup-styling/top-list.png\");'>You haven't created any characters yet!</p>");
                 }
 
                 $stmt->close();
