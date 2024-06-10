@@ -19,42 +19,43 @@ $character_name = '';
 $strength_score = '';
 $notes = '';
 
+// Fetch the current character data when the page loads
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    $stmt = $mysqli->prepare("SELECT * FROM characters WHERE id = ?");
+    $stmt->bind_param("i", $_SESSION['character_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $character_name = $row['name'];
+        $strength_score = $row['strength'];
+        $notes = $row['notes'];
+        $creation_date = $row['creation_date'];
+    }
+    $stmt->close();
+}
+
+// Update the character data when the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['save_changes'])) {
-        // Handle the "Save Changes" button click event
         $character_name = $_POST['character_name'];
         $strength_score = $_POST['strength_score'];
         $notes = $_POST['notes'];
 
-        // Check if all fields are filled
         if (empty($character_name) || empty($strength_score)) {
             $_SESSION['message'] = 'All fields must be filled out';
         } else {
-            // Check if character name already exists in the database
-            $query = "SELECT * FROM character WHERE c_name = ?";
-            $stmt = $mysqli->prepare($query);
-            $stmt->bind_param("s", $character_name);
+            $stmt = $mysqli->prepare("UPDATE characters SET name = ?, strength = ?, notes = ? WHERE id = ?");
+            $stmt->bind_param("sisi", $character_name, $strength_score, $notes, $_SESSION['character_id']);
             $stmt->execute();
-            $result = $stmt->get_result();
-            if ($result->num_rows > 0) {
-                $_SESSION['message'] = 'Character name already exists';
-            } else {
-                // Update the character in the database
-                $stmt = $mysqli->prepare("UPDATE character SET c_name = ?, c_strength_score = ? WHERE c_id = ?");
-                $stmt->bind_param("sii", $character_name, $strength_score, $_SESSION['character_id']);
-                $stmt->execute();
-                $stmt->close();
-
-                $_SESSION['message'] = 'Character updated successfully';
-            }
+            $_SESSION['message'] = 'Character updated successfully';
+            $stmt->close();
         }
     } else if (isset($_POST['discard_changes'])) {
-        // Handle the "Discard Changes" button click event
-        // Redirect to the previous page without making any changes to the database
-        header("Location: your_previous_page.php");
+        header("Location: index.php");
     }
 
-    $mysqli->close(); // Close the database connection
+    $mysqli->close();
 }
 ?>
 <div class="container">
