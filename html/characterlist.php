@@ -57,7 +57,15 @@
                         var id = $(this).closest('li').attr('id').substring(1);
                         confirmDelete(id);
                     });
-                }); 
+                    // Link to charactereditor when clicking on the pencil icon
+                    $('.list-group').on('click', '.bi-pencil-square', function() {
+                        var id = $(this).closest('li').attr('id').substring(1);
+                        window.location.href = 'charactereditor.php?character_id=' + id;
+                    });
+                });
+
+
+
 
                 function confirmDelete(id) {
                     if (confirm("Are you sure you want to delete character " + $('#c' + id).text() + "?")) {

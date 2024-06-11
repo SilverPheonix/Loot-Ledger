@@ -22,7 +22,8 @@ $notes = '';
 // Fetch the current character data when the page loads
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $stmt = $mysqli->prepare("SELECT * FROM characters WHERE id = ?");
-    $stmt->bind_param("i", $_SESSION['character_id']);
+    $stmt->bind_param("i", $_GET['character_id']);
+    $_SESSION ['character_id'] = $_GET['character_id'];
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
@@ -40,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['save_changes'])) {
         $character_name = $_POST['character_name'];
         $strength_score = $_POST['strength_score'];
-        $notes = $_POST['notes'];
+        $notes = !empty($_POST['notes']) ? $_POST['notes'] : NULL; // Set notes to NULL if empty
 
         if (empty($character_name) || empty($strength_score)) {
-            $_SESSION['message'] = 'All fields must be filled out';
+            $_SESSION['message'] = 'Character name and strength score are required fields';
         } else {
             $stmt = $mysqli->prepare("UPDATE characters SET name = ?, strength = ?, notes = ? WHERE id = ?");
             $stmt->bind_param("sisi", $character_name, $strength_score, $notes, $_SESSION['character_id']);
@@ -66,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="character_name">Character Name</label>
             <input type="text" class="form-control" id="character_name" name="character_name" value="<?php echo $character_name; ?>" required>
             <label for='strength_score_selector'>Strength Score:</label>
-            <select id='strength_score_selector' style="display: inline-block"></select>
+            <select  id='strength_score_selector' name='strength_score' style="display: inline-block"></select>
             <label for="notes">Extra Notes:</label>
             <textarea class="form-fields" id="notes" name="notes" rows="6" cols="38" style="resize: vertical; margin-bottom: 10px"><?php echo $notes; ?></textarea>
             <button type="submit" name="save_changes" class="btn btn-primary" style="display: inline-block;">Save Changes</button>
@@ -79,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     var option = document.createElement("option");
                     option.value = i;
                     option.text = i;
-                    if (i === 10) {
+                    if (i === <?php echo $strength_score; ?>) {
                         option.selected = true;
                     }
                     select.appendChild(option);
