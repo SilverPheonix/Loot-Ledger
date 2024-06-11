@@ -44,3 +44,17 @@ INSERT INTO `characters` (`id`, `user_id`, `name`, `strength`) VALUES
 (1, 2, 'Milo', 3),
 (3, 2, 'Henry', 1),
 (5, 2, 'Oulezo', 10);
+
+DROP TABLE IF EXISTS `items`;
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `character_id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `value` int(11) NOT NULL,
+  `notes` TEXT DEFAULT NULL,
+  `x` int(11) NOT NULL DEFAULT 0,
+  `y` int(11) NOT NULL DEFAULT 0,
+  `img` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`character_id`) REFERENCES `characters`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
