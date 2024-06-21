@@ -54,35 +54,20 @@
 				<h1>Loot Ledger</h1>
 				
 				<div class=" d-none d-md-block">
-						<div id="trash" style="padding: 5px; margin-bottom: 15px;" class="text-center ui-droppable ui-droppable-over">
-							<div>
-							<button >Drop here to remove!</button>
-							</div>
-						</div>
-						<div class="newWidget grid-stack-item" gs-x="2" gs-y="4" gs-w="2">
-							<div class="grid-stack-item-content" style="padding: 5px;">
-								<div>
-									<span>Drag me in the dashboard!</span>
-								</div>
-							</div>
-						</div>
-						<br>
-				</div>
-					<div class="container-fluid"><style type="text/css" gs-style-id="gs-id-0"></style>
 					</div>
-				</div>
+						<div class="container-fluid"><style type="text/css" gs-style-id="gs-id-0"></style>
+						</div>
+					</div>
 				</div>
   
 			</div>
 			
+				
+			<?php include "itemlist.php";?>
+			
 				<script>
 					let items = [
 						{x: 0, y: 0, w: 4, h: 2, content: '1'},
-						{x: 7, y: 0, w: 2, h: 1, minW: 2, noResize: true, content: '<p class="card-text text-center" style="margin-bottom: 0">Drag me!<p class="card-text text-center"style="margin-bottom: 0"><ion-icon name="hand" style="font-size: 300%"></ion-icon><p class="card-text text-center" style="margin-bottom: 0">...but don\'t resize me!'},
-						{x: 10, y: 0, w: 2, h: 2, content: '4'},
-						{x: 0, y: 2, w: 2, h: 2, content: '5'},
-						{x: 2, y: 2, w: 2, h: 4, content: '6'},
-						{x: 8, y: 2, w: 4, h: 2, content: '7'},
 					];
 
 					$(document).ready(function() {
@@ -129,7 +114,7 @@
 							maxRow: str,
 						});
 						
-						GridStack.setupDragIn('.newWidget', { appendTo: 'body', helper: 'clone', scroll: false });
+						GridStack.setupDragIn('.newWidget', { appendTo: 'body', helper: 'clone', scroll: false, noResize: true });
 						grid.removeAll();
 						grid.load(items);
 							grid.on('added removed change', function(e, items) {
@@ -180,10 +165,6 @@
 							});
 					}
 				</script>
-				
-				
-				
-			<?php include "itemlist.php";?>
 		</main>
 	</body>
 </html>

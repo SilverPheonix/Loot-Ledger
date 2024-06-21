@@ -34,7 +34,7 @@ CREATE TABLE `characters` (
   `name` varchar(45) NOT NULL,
   -- `nickname` varchar(45) DEFAULT NULL,
   `strength` int(11) NOT NULL,
-char   `notes` TEXT DEFAULT NULL,
+	`notes` TEXT DEFAULT NULL,
    `creation_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user`(`u_id`) ON DELETE CASCADE

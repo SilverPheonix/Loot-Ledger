@@ -189,7 +189,7 @@ nav {
 	align-items: center;
 }
 .item-img{
-	width: 100%;
+	width: 70%;
 	height: auto;
 }
 .form-fields input[type="text"] {
@@ -502,4 +502,20 @@ nav {
 .list-group-item:active {
 	color: #F7DC6F; /* Gelber Text beim Klicken */
 	transform: translateY(1px); /* Leichter "Klick"-Effekt */
+}
+
+.grid-stack-item{
+	height: 100px;
+	width: 100px;
+	margin:10px;
+	display:inline-flex;
+}
+
+.grid-stack-item-content{
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+#itemlist{
 }
