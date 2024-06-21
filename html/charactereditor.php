@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
             $_SESSION['message'] = 'Character updated successfully';
             $stmt->close();
+            header("Location: index.php");
         }
     } else if (isset($_POST['discard_changes'])) {
         header("Location: index.php");
