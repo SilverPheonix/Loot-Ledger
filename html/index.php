@@ -53,12 +53,12 @@
 			<div class="character-inventory col-md-7 ">
 				<h1>Loot Ledger</h1>
 				
-				<div class=" d-none d-md-block">
-					</div>
-						<div class="container-fluid"><style type="text/css" gs-style-id="gs-id-0"></style>
-						</div>
-					</div>
+				<div>
+				<h3 id="charactername"></h3>
+				<button class="fantasy-button" id ="getItems" >Save</button>
+					<div class="container-fluid"><style type="text/css" gs-style-id="gs-id-0"></style></div>
 				</div>
+			</div>
   
 			</div>
 			
@@ -66,10 +66,7 @@
 			<?php include "itemlist.php";?>
 			
 				<script>
-					let items = [
-						{x: 0, y: 0, w: 4, h: 2, content: '1'},
-					];
-
+					
 					$(document).ready(function() {
 						$('.list-group-item, .first-list-group-item').on('click', function() {
 							// Entferne die Klasse 'selected' von allen Listenelementen
@@ -81,10 +78,42 @@
 
 							// Optional: Verwende den strength-Wert weiter
 							// Hier kannst du zusätzlichen Code hinzufügen, um den Wert weiterzuverarbeiten
-							load_grid(parseInt(strengthValue/2));
+							load_grid(parseInt(strengthValue/2), $(this).get(0).id);
+							
+							$('#charactername').html($(this).data('name'));
+							$('#charactername').data('c_id', $(this).get(0).id);
+							//console.log($(this).data('name')+" "+$('#charactername').data('c_id'));
+						});
+						//Lädt die Items aus dem grid
+						$('#getItems').on('click', function () {
+							let items = grid.save();
+							console.log("Grid items:", items);
+							saveItems(items);
 						});
 					});
+					
+					//
+					function saveItems(items){
+						let c_id =$('#charactername').data('c_id');
+						let c_name =$('#charactername').html;
+						$.ajax({
+								url: '../src/db/insertItems.php',
+								method: 'POST',
+								data: {
+									character: c_id,
+									item_list: items,
 
+								},
+								success: function() {
+									console.log('Items uploaded successfully'+ c_name);
+								},
+								error: function(error) {
+									console.error('Error uploading items:' + c_name, error);
+								}
+							});
+						
+
+					}
 					// $(document).ready(function() {
 					// 	$('.list-group-item').on('click', function() {
 					// 		// Entferne die Klasse 'selected' von allen Listenelementen
@@ -99,7 +128,7 @@
 					// 		load_grid(parseInt(strengthValue/2));
 					// 	});
 					// });
-					function load_grid(str){
+					function load_grid(str, c_id){
 						if (window.grid) {
 							console.log("Destroying old grid");
 							grid.destroy();
@@ -116,24 +145,42 @@
 						
 						GridStack.setupDragIn('.newWidget', { appendTo: 'body', helper: 'clone', scroll: false, noResize: true });
 						grid.removeAll();
-						grid.load(items);
-							grid.on('added removed change', function(e, items) {
-							let str = '';
-							items.forEach(function(item) { str += ' (x,y)=' + item.x + ',' + item.y; });
-							console.log(e.type + ' ' + items.length + ' items:' + str );
-						});
+						let items = [];
+						$.ajax({
+								url: '../src/db/getItems.php',
+								method: 'POST',
+								dataType: "json",
+								data: {
+									character: c_id,
 
-						// Begrenzung der Positionierung innerhalb des Grids
-						grid.on('change', function (event, items) {
-							items.forEach(function (item) {
-								if (item.x + item.w > 12) {
-									grid.update(item.el, { x: 12 - item.w });
-								}
-								if (item.y + item.h > str) {
-									grid.update(item.el, { y: str - item.h });
+								},
+								success: function(response) {
+									console.log(response);
+									for (var i = 0; i < response.length; i++) {
+										items.push({x: response[i].x, y: response[i].y, w: response[i].w, h: response[i].h, content: response[i].value});
+									}
+									grid.load(items);
+									grid.on('added removed change', function(e, items) {
+										let str = '';
+										items.forEach(function(item) { str += ' (x,y)=' + item.x + ',' + item.y; });
+										console.log(e.type + ' ' + items.length + ' items:' + str );
+									});
+									// Begrenzung der Positionierung innerhalb des Grids
+									grid.on('change', function (event, items) {
+										items.forEach(function (item) {
+											if (item.x + item.w > 12) {
+												grid.update(item.el, { x: 12 - item.w });
+											}
+											if (item.y + item.h > str) {
+												grid.update(item.el, { y: str - item.h });
+											}
+										});
+									});	
+								},
+								error: function(error) {
+									console.error('Error', error);
 								}
 							});
-						});
 					}
 
 					function createCharacter() {
@@ -146,7 +193,7 @@
 						}
 					}
 
-					function insert_character(userId, characterName, characterStrength) {	
+					function insert_character(userId, characterName, characterStrength) {
 						$.ajax({
 								url: '../src/db/insertCharacter.php',
 								method: 'POST',
@@ -156,8 +203,8 @@
 									strength: characterStrength
 								},
 								success: function() {
-									//debug
 									console.log('Character uploaded successfully'+ userId + characterName + characterStrength);
+									window.location.reload();
 								},
 								error: function(error) {
 									console.error('Error uploading character:' + userId + characterName + characterStrength, error);

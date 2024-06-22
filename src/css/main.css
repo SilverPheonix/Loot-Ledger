@@ -95,6 +95,8 @@ nav {
 }
 h3 {
 	font-size: 30px;
+	text-align: center;
+	font-family: "Caesar Dressing", sans-serif;
 }
 .container label {
 	display: block;

@@ -23,8 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $mysqli->close();
-    header("Location: index.php");
-} 
+}
 else{
     echo "Error: Invalid request method";
     }

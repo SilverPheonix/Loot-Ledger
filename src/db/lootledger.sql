@@ -2,7 +2,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
+DROP database if exists `lootledgerDB`;
 CREATE DATABASE IF NOT EXISTS `lootledgerDB`;
 USE `lootledgerDB`;
 
@@ -49,12 +49,11 @@ DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `character_id` int(11) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `value` int(11) NOT NULL,
-  `notes` TEXT DEFAULT NULL,
-  `x` int(11) NOT NULL DEFAULT 0,
-  `y` int(11) NOT NULL DEFAULT 0,
-  `img` varchar(45) DEFAULT NULL,
+  `value` varchar(250) ,
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  `h` int(11) NOT NULL,
+  `w` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`character_id`) REFERENCES `characters`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

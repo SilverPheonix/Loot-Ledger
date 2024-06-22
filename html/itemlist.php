@@ -7,7 +7,7 @@
 						</div>
 					</div>
                     <div id="itemlist">
-                        <div class="newWidget grid-stack-item ui-resizable-disabled" gs-x="1" gs-y="1" gs-w="3" gs-h="4" gs-no-resize="true">
+                        <div class="newWidget grid-stack-item ui-resizable-disabled" gs-x="1" gs-y="1" gs-w="3" gs-h="4" gs-name="Battleaxe" gs-no-resize="true">
                             <div class="grid-stack-item-content">
                                 <div>
                                     <img class="item-img" src="../src/img/items/Battleaxe.jpeg" alt="Battleaxe">
