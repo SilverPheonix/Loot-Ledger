@@ -54,12 +54,13 @@
                 $(document).ready(function() {
                     // Use event delegation to handle click events on dynamically added delete buttons
                     $('.list-group').on('click', '.bi-x-lg', function() {
-                        var id = $(this).closest('li').attr('id').substring(1);
+                        var id = $(this).closest('li').attr('id');
                         confirmDelete(id);
+                        location.reload();
                     });
                     // Link to charactereditor when clicking on the pencil icon
                     $('.list-group').on('click', '.bi-pencil-square', function() {
-                        var id = $(this).closest('li').attr('id').substring(1);
+                        var id = $(this).closest('li').attr('id');
                         window.location.href = 'charactereditor.php?character_id=' + id;
                     });
                 });
@@ -81,7 +82,7 @@
                         data: { id: id },
 
                         success: function(response) {
-                            $('#c' + id).remove();
+                            $('#' + id).remove();
                         },
                         error: function(xhr, status, error) {
                             console.log(error);

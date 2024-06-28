@@ -39,6 +39,12 @@
 			.selected {
 				background-color: #d3d3d3; /* Beispiel Farbe für den ausgewählten Zustand */
 			}
+			.center-button{
+				text-align: center ;
+				margin: auto;
+				display: grid;
+				justify-content: center;
+			}
         </style>
 		<link href="..\node_modules/gridstack/dist/gridstack.min.css" rel="stylesheet"/>
 		<script src="..\node_modules/gridstack/dist/gridstack-all.js"></script>
@@ -54,8 +60,12 @@
 				<h1>Loot Ledger</h1>
 				
 				<div>
-				<h3 id="charactername"></h3>
-				<button class="fantasy-button" id ="getItems" >Save</button>
+				
+			 	<div class="center-button">
+				 	<h3 id="charactername"></h3>
+					<button class="fantasy-button center-button" id ="getItems" >Save</button>
+
+				</div>
 					<div class="container-fluid"><style type="text/css" gs-style-id="gs-id-0"></style></div>
 				</div>
 			</div>
@@ -66,7 +76,7 @@
 			<?php include "itemlist.php";?>
 			
 				<script>
-					
+					$('#getItems').hide();
 					$(document).ready(function() {
 						$('.list-group-item, .first-list-group-item').on('click', function() {
 							// Entferne die Klasse 'selected' von allen Listenelementen
@@ -79,6 +89,8 @@
 							// Optional: Verwende den strength-Wert weiter
 							// Hier kannst du zusätzlichen Code hinzufügen, um den Wert weiterzuverarbeiten
 							load_grid(parseInt(strengthValue/2), $(this).get(0).id);
+							
+							$('#getItems').show();
 							
 							$('#charactername').html($(this).data('name'));
 							$('#charactername').data('c_id', $(this).get(0).id);

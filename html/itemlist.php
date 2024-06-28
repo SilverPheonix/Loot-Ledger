@@ -3,7 +3,7 @@
                 <div class = container>
                     <div id="trash" style="padding: 5px; margin-bottom: 15px;" class="text-center ui-droppable ui-droppable-over">
 						<div>
-							<button >Drop here to remove!</button>
+							<button class="fantasy-button">Drop here to remove!</button>
 						</div>
 					</div>
                     <div id="itemlist">

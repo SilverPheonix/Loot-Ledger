@@ -5,6 +5,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
 
     require_once 'dbconfig.php';
+    $sql = "DELETE FROM items where character_id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
 
     $sql = "DELETE FROM characters WHERE id = ?";
     $stmt = $mysqli->prepare($sql);
