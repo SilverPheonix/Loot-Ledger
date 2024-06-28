@@ -128,11 +128,12 @@ Upon successful login, you will be directed to the main dashboard, which include
 
 ### Backpack Management
 - **Viewing Backpack:**
-  - The middle section of the screen will display the selected character's backpack, which gets longer as the character's strength increases.
+  - The middle section of the screen will display the selected character's backpack, which gets bigger as the character's strength increases.
   
 - **Adding Items to Backpack:**
   1. Drag items from the right sidebar into the character's backpack in the middle section.
-  2. Efficiently stack items to maximize the space usage based on item sizes and backpack capacity.
+  2. If the item casts a shadow, you can drop it. If there is no shadow, the item might be too large.
+  3. Efficiently add items to maximize the space usage based on item sizes and backpack capacity.
 
 - **Saving Backpack Configuration:**
   - Once items are placed in the backpack, click the "Save" button to save the item positions.
