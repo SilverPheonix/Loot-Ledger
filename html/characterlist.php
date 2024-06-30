@@ -56,7 +56,6 @@
                     $('.list-group').on('click', '.bi-x-lg', function() {
                         var id = $(this).closest('li').attr('id');
                         confirmDelete(id);
-                        location.reload();
                     });
                     // Link to charactereditor when clicking on the pencil icon
                     $('.list-group').on('click', '.bi-pencil-square', function() {
@@ -83,6 +82,7 @@
 
                         success: function(response) {
                             $('#' + id).remove();
+                            location.reload();
                         },
                         error: function(xhr, status, error) {
                             console.log(error);
