@@ -123,8 +123,8 @@ Upon successful login, you will be directed to the main dashboard, which include
 
 - **Viewing Characters:**
   - Your created characters will be listed on the left sidebar. Click on a character to view and manage their backpack.
-  - (WIP) Click the Edit Icon to edit your Character.
-  - (WIP) Click the X to delete your Character.
+  - Click the Edit Icon to edit your Characters name and strength score.
+  - Click the X to delete your Character.
 
 ### Backpack Management
 - **Viewing Backpack:**
