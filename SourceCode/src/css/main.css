@@ -1,0 +1,521 @@
+@import url("https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=UnifrakturCook:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap");
+:root {
+	--dark-main-color: #3c3c44;
+	--light-main-color: #b3b3cc;
+	--blue-color: #226699;
+}
+html {
+	font-size: 18px;
+	box-sizing: border-box;
+	user-select: none;
+	height: 100vh;
+	width: 100vw;
+}
+body {
+    font-family: 'Cinzel', serif;
+	color: var(--light-main-color);
+	background-color: var(--dark-main-color);
+	padding-top: 100px;
+}
+/* Nav bar*/
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 1rem 1rem;
+}
+/*main*/
+.game-display {
+	box-sizing: border-box;
+	background-color: var(--light-main-color);
+	color: var(--dark-main-color);
+	height: 85vh;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 3fr 2fr;
+	grid-template-rows: 0.25fr repeat(4, 1fr) 0.25fr;
+	grid-gap: 1px;
+}
+.character-inventory {
+	flex: 1;
+	width: 100%;
+	height: 85vh;
+}
+.character-inventory h1 {
+	text-align: center;
+	font-size: 3.5rem;
+	margin: 0;
+	font-family: "Caesar Dressing", sans-serif;
+	padding: 1rem;
+}
+
+@media (max-width: 1050px) {
+	html {
+		font-size: 10px;
+	}
+}
+@media (max-width: 650px) {
+	html {
+		font-size: 8px;
+	}
+	body:before {
+		content: "Try flip phone to the side or use bigger screen size! Best on desktop device.";
+		color: var(--light-main-color);
+		text-align: center;
+		font-size: 2.7rem;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	body:after {
+		content: "- ⚔️ -";
+		font-size: 7rem;
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	main,
+	nav {
+		opacity: 0;
+	}
+}
+.container {
+	width: 300px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #F7DC6F;
+	border-radius: 5px;
+}
+.container h2, h3 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+h3 {
+	font-size: 30px;
+	text-align: center;
+	font-family: "Caesar Dressing", sans-serif;
+}
+.container label {
+	display: block;
+	margin-bottom: 5px;
+}
+.container input[type="text"],
+.container input[type="password"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+.container input[type="checkbox"] + label {
+	margin-right: 5px;
+	display: inline;
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: #f8f8f8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	background-color: var(--dark-main-color);
+}
+
+.logo img {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%; /* This will make the image round */
+	object-fit: cover; /* This will maintain the aspect ratio of the image */
+}
+.buttons {
+	display: flex;
+	align-items: center;
+}
+.buttons .button {
+	margin-right: 40px;
+	padding: 15px 25px;
+	text-decoration: none;
+	background-color: #4CAF50;
+	color: white;
+	border-radius: 5px;
+}
+
+.buttons .button:hover {
+	background-color: #45a049;
+}
+.container {
+	box-shadow: 0px 10px 30px rgba(0, 0, 0, 1); /* Horizontal offset, vertical offset, blur radius, shadow color */
+	border-radius: 10px; /* Rounded corners */
+}
+.profile-form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-fields {
+	display: flex;
+	justify-content: space-between;
+}
+.button-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	text-align: center;
+}
+.profile-image {
+	float: right;
+	width: 200px;
+	text-align: center;
+	flex: 1;
+}
+
+.profile-image img {
+	width: 100%;
+	height: auto;
+	border-radius: 5px;
+	margin-bottom: 20px;
+}
+.profile-image-container {
+	padding: 10px;
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.item-img{
+	width: 70%;
+	height: auto;
+}
+.form-fields input[type="text"] {
+	max-width: 300px;
+}
+
+.fantasy-button {
+	margin-right: 2vh;
+	padding-right: 2vh;
+    display: inline-block; 
+    background-color: #5DADE2; /* Heller Blauton */
+    color: #FFFFFF; /* Weißer Text */
+    border: 2px solid #3498DB; /* Mittelblau */
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+	position: relative;
+}
+
+/* Hover-Effekte */
+.fantasy-button:hover {
+    box-shadow: 0 0 10px 2px #F7DC6F; /* Gelber Leuchteffekt */
+    transform: translateY(-2px); /* Leichter "Schwebe"-Effekt */
+}
+
+/* Active-Effekte */
+.fantasy-button:active {
+    background-color: #154360; /* Dunkler Blauton beim Klicken */
+    color: #F7DC6F; /* Gelber Text beim Klicken */
+    transform: translateY(1px); /* Leichter "Klick"-Effekt */
+}
+.center-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+/* Adjusting the margin for spacing */
+.center-buttons a {
+    margin: 0 auto;
+}
+
+.fantasy-button-reg {
+    margin-right: 2vh;
+    padding-right: 2vh;
+    display: inline-block; 
+    background-color: #5DADE2; /* Heller Blauton */
+    color: #FFFFFF; /* Weißer Text */
+    border: 2px solid #3498DB; /* Mittelblau */
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    position: relative;
+    text-align: center; /* Center text inside button */
+    line-height: 1.5; /* Adjust line-height for better vertical alignment */
+	margin: 0 auto;
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* Hover-Effekte */
+.fantasy-button-reg:hover {
+    box-shadow: 0 0 10px 2px #F7DC6F; /* Gelber Leuchteffekt */
+    transform: translateY(-2px); /* Leichter "Schwebe"-Effekt */
+}
+
+/* Active-Effekte */
+.fantasy-button-reg:active {
+    background-color: #154360; /* Dunkler Blauton beim Klicken */
+    color: #F7DC6F; /* Gelber Text beim Klicken */
+    transform: translateY(1px); /* Leichter "Klick"-Effekt */
+}
+
+.navbar-buttons{
+	position: relative;
+	display: flex;
+	justify-content: center;
+	right:2vh;
+}
+
+.list-group {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: var(--dark-main-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+}
+
+.characters-container {
+	width: 18.5em;
+	margin: 0 auto;
+	margin-left: 0em;
+	padding: 10px;
+	border-color: transparent;
+	border-radius: 5px;
+}
+
+.create-character-button {
+	background-image: url('../img/list-goup-styling/top-bar.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 15vh;
+	width: 45vh;
+	display: flex;
+	border: none;
+	cursor: pointer;
+	size: absolute;
+	font-size: 50px;
+	font-family: "Caesar Dressing", sans-serif;
+	color: #EAEAF1;
+	text-shadow: 0 0 7px #EAEAF1;
+	-webkit-text-stroke: 4px black;
+	text-decoration: none;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Hover-Effekte */
+.create-character-button:hover {
+	border-radius: 20px;
+    box-shadow: 0 0 10px 2px #F7DC6F;
+    transform: translateY(-2px);
+	text-shadow: 0 0 10px #F7DC6F;
+}
+
+/* Active-Effekte */
+.create-character-button:active {
+	color: #F7DC6F;
+    transform: translateY(1px);
+	text-shadow: 0 0 10px #F7DC6F;
+}
+
+.no-character-yet-message {
+	float: left;
+	border-color: transparent;
+	background-color: var(--dark-main-color);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 23vh;
+	width: 32vh;
+	size: absolute;
+	
+	font-size: 20px;
+	font-family: "Caesar Dressing", sans-serif;
+	color: #EAEAF1;
+	text-shadow: 0 0 3px #EAEAF1;
+	-webkit-text-stroke: 1px black;
+	text-decoration: none;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	
+	padding-top: 4.6em;
+	padding-left: 1em;
+	padding-right: 1em;
+
+}
+
+.first-list-group-item {
+	float: left;
+	border-color: transparent;
+	background-color: var(--dark-main-color);
+	/* background-image: linear-gradient(45deg, transparent 0%, transparent 60%, #F7DC6F 50%, #F7DC6F 100%); */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 23vh;
+	width: 32vh;
+	size: absolute;
+	cursor: pointer;
+	
+	/* font-size: 35px;
+	font-family: 'Cinzel', serif;
+	text-decoration: none;
+	color: #EAEAF1;
+	-webkit-text-stroke: 1px black;
+	text-align: center;
+	justify-content: center;
+	*/
+	
+	/* font-size: 25px;
+	font-family: "Caesar Dressing", sans-serif;
+	color: #EAEAF1;
+	text-shadow: 0 0 4px #EAEAF1;
+	-webkit-text-stroke: 2px black;
+	text-decoration: none;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex; 
+	
+	padding-top: 2.5em; */
+
+	/* padding-left: 1em; */
+	/* padding-right: 1em; */
+}
+
+.first-list-item-name {
+    /* Style for the name */
+	font-size: 30px;
+	font-family: "Caesar Dressing", sans-serif;
+	color: #EAEAF1;
+	text-shadow: 0 0 4px #EAEAF1;
+	-webkit-text-stroke: 2px black;
+
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+
+	padding-top: 3.25em;
+    margin-bottom: 0.15em; /* Space between name and strength */
+}
+
+.first-list-item-strength-icons {
+    /* Style for the strength */
+	font-size: 18.5px;
+	font-family: "Caesar Dressing", sans-serif;
+	color: white;
+	text-shadow: 0 0 3px #EAEAF1;
+	-webkit-text-stroke: 1.5px black;
+	display: flex;
+	padding-left: 1.8em;
+}
+
+.list-group-item {
+	float: left;
+	border-color: transparent;
+	background-color: var(--dark-main-color);
+	/* background-image: linear-gradient(45deg, transparent 0%, transparent 60%, #F7DC6F 50%, #F7DC6F 100%); */
+	background-size: cover; /* Cover the entire area of the list item */
+	background-position: center; /* Center the background image */
+	background-repeat: no-repeat; /* Do not repeat the background image */
+	height: 20vh;
+	width: 32vh;
+	size: absolute;
+	cursor: pointer;
+	
+	/* font-size: 35px;
+	font-family: 'Cinzel', serif;
+	text-decoration: none;
+	color: #EAEAF1;
+	-webkit-text-stroke: 1px black;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	
+	padding-top: 1.5em;	 */
+}
+
+.list-item-name {
+    /* Style for the name */
+	font-size: 30px;
+	font-family: "Caesar Dressing", sans-serif;
+	color: #EAEAF1;
+	text-shadow: 0 0 4px #EAEAF1;
+	-webkit-text-stroke: 2px black;
+
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+
+	padding-top: 2.26em;
+    margin-bottom: 0.15em; /* Space between name and strength */
+}
+
+.list-item-strength-icons {
+    /* Style for the strength */
+	font-size: 18.5px;
+	font-family: "Caesar Dressing", sans-serif;
+	color: white;
+	text-shadow: 0 0 3px #EAEAF1;
+	-webkit-text-stroke: 1.5px black;
+	display: flex;
+	padding-left: 0.9em;
+}
+
+.first-list-group-item:hover {
+	border-color: transparent;
+}
+
+.list-group-item:hover {
+	border-color: transparent;
+}
+
+.first-list-group-item:active {
+	color: #F7DC6F; /* Gelber Text beim Klicken */
+	transform: translateY(1px); /* Leichter "Klick"-Effekt */
+}
+
+.list-group-item:active {
+	color: #F7DC6F; /* Gelber Text beim Klicken */
+	transform: translateY(1px); /* Leichter "Klick"-Effekt */
+}
+
+.grid-stack-item{
+	height: 100px;
+	width: 100px;
+	margin:10px;
+	display:inline-flex;
+}
+
+.grid-stack-item-content{
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
